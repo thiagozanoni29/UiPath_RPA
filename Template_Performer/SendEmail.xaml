@@ -1,0 +1,380 @@
+<Activity mc:Ignorable="sap sap2010" x:Class="SendEmail" xmlns="http://schemas.microsoft.com/netfx/2009/xaml/activities" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:sap="http://schemas.microsoft.com/netfx/2009/xaml/activities/presentation" xmlns:sap2010="http://schemas.microsoft.com/netfx/2010/xaml/activities/presentation" xmlns:scg="clr-namespace:System.Collections.Generic;assembly=System.Private.CoreLib" xmlns:sd="clr-namespace:System.Data;assembly=System.Data.Common" xmlns:ss="clr-namespace:System.Security;assembly=System.Private.CoreLib" xmlns:ui="http://schemas.uipath.com/workflow/activities" xmlns:um="clr-namespace:UiPath.Mail;assembly=UiPath.Mail.Activities" xmlns:umab="clr-namespace:UiPath.Mail.Activities.Business;assembly=UiPath.Mail.Activities" xmlns:umabh="clr-namespace:UiPath.Mail.Activities.Business.HtmlEditor;assembly=UiPath.Mail.Activities" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+  <x:Members>
+    <x:Property Name="in_Config" Type="InArgument(scg:Dictionary(x:String, x:Object))" />
+    <x:Property Name="in_CountRowsTableSendEmailBE" Type="InArgument(x:Int32)" />
+    <x:Property Name="in_CountRowsTableSendEmailSE" Type="InArgument(x:Int32)" />
+    <x:Property Name="in_CountRowsTableSendEmailSucess" Type="InArgument(x:Int32)" />
+    <x:Property Name="in_CountRowsTableSendEmailTotal" Type="InArgument(x:Int32)" />
+    <x:Property Name="in_CountRowsTableSendEmailException" Type="InArgument(x:Int32)" />
+    <x:Property Name="in_dtLogSendEmailSucess" Type="InArgument(sd:DataTable)" />
+    <x:Property Name="in_dtLogSendEmailException" Type="InArgument(sd:DataTable)" />
+  </x:Members>
+  <sap:VirtualizedContainerService.HintSize>1507,3089</sap:VirtualizedContainerService.HintSize>
+  <sap2010:WorkflowViewState.IdRef>ActivityBuilder_1</sap2010:WorkflowViewState.IdRef>
+  <TextExpression.NamespacesForImplementation>
+    <scg:List x:TypeArguments="x:String" Capacity="32">
+      <x:String>System.Activities</x:String>
+      <x:String>System.Activities.Statements</x:String>
+      <x:String>System</x:String>
+      <x:String>System.Collections</x:String>
+      <x:String>System.Collections.Generic</x:String>
+      <x:String>System.Data</x:String>
+      <x:String>UiPath.Core</x:String>
+      <x:String>UiPath.Core.Activities</x:String>
+      <x:String>System.Xml.Serialization</x:String>
+      <x:String>System.Collections.ObjectModel</x:String>
+      <x:String>System.Runtime.Serialization</x:String>
+      <x:String>System.Reflection</x:String>
+      <x:String>System.Windows.Forms</x:String>
+      <x:String>System.ComponentModel</x:String>
+      <x:String>System.Security</x:String>
+      <x:String>UiPath.Mail</x:String>
+      <x:String>UiPath.Mail.Activities.Utils</x:String>
+      <x:String>UiPath.Mail.Activities.Business.HtmlEditor</x:String>
+      <x:String>UiPath.Mail.Activities.Business</x:String>
+      <x:String>UiPath.Shared.Activities.ConnectionService.Contracts</x:String>
+      <x:String>UiPath.Shared.Activities</x:String>
+      <x:String>System.Activities.Expressions</x:String>
+      <x:String>System.Diagnostics</x:String>
+      <x:String>System.Drawing</x:String>
+      <x:String>System.Linq</x:String>
+      <x:String>System.Xml</x:String>
+      <x:String>System.Xml.Linq</x:String>
+      <x:String>System.IO</x:String>
+      <x:String>System.Net.Mail</x:String>
+      <x:String>Microsoft.VisualBasic</x:String>
+      <x:String>GlobalVariablesNamespace</x:String>
+      <x:String>GlobalConstantsNamespace</x:String>
+    </scg:List>
+  </TextExpression.NamespacesForImplementation>
+  <TextExpression.ReferencesForImplementation>
+    <scg:List x:TypeArguments="AssemblyReference" Capacity="60">
+      <AssemblyReference>System.Activities</AssemblyReference>
+      <AssemblyReference>Microsoft.VisualBasic</AssemblyReference>
+      <AssemblyReference>mscorlib</AssemblyReference>
+      <AssemblyReference>System.Data</AssemblyReference>
+      <AssemblyReference>System</AssemblyReference>
+      <AssemblyReference>System.Drawing</AssemblyReference>
+      <AssemblyReference>System.Core</AssemblyReference>
+      <AssemblyReference>System.Xml</AssemblyReference>
+      <AssemblyReference>System.Xml.Linq</AssemblyReference>
+      <AssemblyReference>PresentationFramework</AssemblyReference>
+      <AssemblyReference>WindowsBase</AssemblyReference>
+      <AssemblyReference>PresentationCore</AssemblyReference>
+      <AssemblyReference>System.Xaml</AssemblyReference>
+      <AssemblyReference>System.ComponentModel.Composition</AssemblyReference>
+      <AssemblyReference>System.ServiceModel</AssemblyReference>
+      <AssemblyReference>Microsoft.VisualStudio.Services.Common</AssemblyReference>
+      <AssemblyReference>System.Data.DataSetExtensions</AssemblyReference>
+      <AssemblyReference>Newtonsoft.Json</AssemblyReference>
+      <AssemblyReference>UiPath.IntelligentOCR</AssemblyReference>
+      <AssemblyReference>UiPath.Python</AssemblyReference>
+      <AssemblyReference>UiPath.Excel</AssemblyReference>
+      <AssemblyReference>UiPath.System.Activities</AssemblyReference>
+      <AssemblyReference>UiPath.UiAutomation.Activities</AssemblyReference>
+      <AssemblyReference>System.Runtime.Serialization</AssemblyReference>
+      <AssemblyReference>System.Memory</AssemblyReference>
+      <AssemblyReference>UiPath.System.Activities.Design</AssemblyReference>
+      <AssemblyReference>Microsoft.Bcl.AsyncInterfaces</AssemblyReference>
+      <AssemblyReference>System.ValueTuple</AssemblyReference>
+      <AssemblyReference>UiPath.OCR.Activities.Design</AssemblyReference>
+      <AssemblyReference>UiPath.UIAutomationCore</AssemblyReference>
+      <AssemblyReference>WindowsFormsIntegration</AssemblyReference>
+      <AssemblyReference>System.Windows.Forms</AssemblyReference>
+      <AssemblyReference>UiPath.Studio.Constants</AssemblyReference>
+      <AssemblyReference>System.Private.ServiceModel</AssemblyReference>
+      <AssemblyReference>System.Private.CoreLib</AssemblyReference>
+      <AssemblyReference>System.Collections</AssemblyReference>
+      <AssemblyReference>UiPath.Workflow</AssemblyReference>
+      <AssemblyReference>NPOI</AssemblyReference>
+      <AssemblyReference>System.Memory.Data</AssemblyReference>
+      <AssemblyReference>System.ComponentModel.TypeConverter</AssemblyReference>
+      <AssemblyReference>System.Console</AssemblyReference>
+      <AssemblyReference>System.Configuration.ConfigurationManager</AssemblyReference>
+      <AssemblyReference>System.Security.Permissions</AssemblyReference>
+      <AssemblyReference>System.ComponentModel</AssemblyReference>
+      <AssemblyReference>System.Private.Uri</AssemblyReference>
+      <AssemblyReference>System.ComponentModel.EventBasedAsync</AssemblyReference>
+      <AssemblyReference>Microsoft.Win32.Primitives</AssemblyReference>
+      <AssemblyReference>System.ComponentModel.Primitives</AssemblyReference>
+      <AssemblyReference>System.ObjectModel</AssemblyReference>
+      <AssemblyReference>System.Data.SqlClient</AssemblyReference>
+      <AssemblyReference>System.Data.Common</AssemblyReference>
+      <AssemblyReference>System.Private.Xml</AssemblyReference>
+      <AssemblyReference>System.Runtime.InteropServices</AssemblyReference>
+      <AssemblyReference>UiPath.Mail.Activities</AssemblyReference>
+      <AssemblyReference>UiPath.Mail</AssemblyReference>
+      <AssemblyReference>UiPath.Excel.Activities</AssemblyReference>
+      <AssemblyReference>UiPath.Testing.Activities</AssemblyReference>
+      <AssemblyReference>UiPath.OCR.Activities</AssemblyReference>
+      <AssemblyReference>System.ServiceModel.Activities</AssemblyReference>
+    </scg:List>
+  </TextExpression.ReferencesForImplementation>
+  <Sequence DisplayName="Send Email" sap:VirtualizedContainerService.HintSize="838,3024" sap2010:WorkflowViewState.IdRef="Sequence_71">
+    <Sequence.Variables>
+      <Variable x:TypeArguments="x:String" Name="strNomeArea" />
+      <Variable x:TypeArguments="x:String" Name="strCorpoEmail1" />
+      <Variable x:TypeArguments="x:String" Name="strCorpoEmail2" />
+      <Variable x:TypeArguments="x:String" Name="strRodapeEmail" />
+    </Sequence.Variables>
+    <sap:WorkflowViewStateService.ViewState>
+      <scg:Dictionary x:TypeArguments="x:String, x:Object">
+        <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+        <x:Boolean x:Key="IsPinned">False</x:Boolean>
+      </scg:Dictionary>
+    </sap:WorkflowViewStateService.ViewState>
+    <ui:MultipleAssign DisplayName="Multiple Assign" sap:VirtualizedContainerService.HintSize="776,203" sap2010:WorkflowViewState.IdRef="MultipleAssign_2">
+      <ui:MultipleAssign.AssignOperations>
+        <scg:List x:TypeArguments="ui:AssignOperation" Capacity="4">
+          <ui:AssignOperation sap2010:WorkflowViewState.IdRef="AssignOperation_4">
+            <ui:AssignOperation.To>
+              <OutArgument x:TypeArguments="x:String">[strNomeArea]</OutArgument>
+            </ui:AssignOperation.To>
+            <ui:AssignOperation.Value>
+              <InArgument x:TypeArguments="x:String">[in_Config("Nome_Área").ToString]</InArgument>
+            </ui:AssignOperation.Value>
+          </ui:AssignOperation>
+          <ui:AssignOperation sap2010:WorkflowViewState.IdRef="AssignOperation_5">
+            <ui:AssignOperation.To>
+              <OutArgument x:TypeArguments="x:String">[strCorpoEmail1]</OutArgument>
+            </ui:AssignOperation.To>
+            <ui:AssignOperation.Value>
+              <InArgument x:TypeArguments="x:String">[in_Config("Corpo_Email1").ToString]</InArgument>
+            </ui:AssignOperation.Value>
+          </ui:AssignOperation>
+          <ui:AssignOperation sap2010:WorkflowViewState.IdRef="AssignOperation_6">
+            <ui:AssignOperation.To>
+              <OutArgument x:TypeArguments="x:String">[strCorpoEmail2]</OutArgument>
+            </ui:AssignOperation.To>
+            <ui:AssignOperation.Value>
+              <InArgument x:TypeArguments="x:String">[in_Config("Corpo_Email2").ToString]</InArgument>
+            </ui:AssignOperation.Value>
+          </ui:AssignOperation>
+          <ui:AssignOperation sap2010:WorkflowViewState.IdRef="AssignOperation_7">
+            <ui:AssignOperation.To>
+              <OutArgument x:TypeArguments="x:String">[strRodapeEmail]</OutArgument>
+            </ui:AssignOperation.To>
+            <ui:AssignOperation.Value>
+              <InArgument x:TypeArguments="x:String">[in_Config("Rodape_Email").ToString]</InArgument>
+            </ui:AssignOperation.Value>
+          </ui:AssignOperation>
+        </scg:List>
+      </ui:MultipleAssign.AssignOperations>
+    </ui:MultipleAssign>
+    <If Condition="[in_CountRowsTableSendEmailSucess &gt; 0 AND in_CountRowsTableSendEmailException &lt;= 0]" DisplayName="If - Envio de email de Sucesso" sap:VirtualizedContainerService.HintSize="776,2659" sap2010:WorkflowViewState.IdRef="If_15">
+      <sap:WorkflowViewStateService.ViewState>
+        <scg:Dictionary x:TypeArguments="x:String, x:Object">
+          <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+          <x:Boolean x:Key="IsPinned">False</x:Boolean>
+        </scg:Dictionary>
+      </sap:WorkflowViewStateService.ViewState>
+      <If.Then>
+        <umab:GmailApplicationCard Account="romario.santos@grupoboticario.com.br" ClientId="306001045108-0vikne5v3lubko5gevi8t2qb06mbj009.apps.googleusercontent.com" ClientSecret="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" ConnectionAccountName="thiago.zanoni@grupoboticario.com.br" ConnectionId="63af24ab-968a-ed11-ac20-14cb652f1df1" DisplayName="Use Gmail" EmailAddress="romario.santos@grupoboticario.com.br" sap:VirtualizedContainerService.HintSize="530,690" sap2010:WorkflowViewState.IdRef="GmailApplicationCard_11" Timeout="90" UseConnectionService="True">
+          <umab:GmailApplicationCard.Body>
+            <ActivityAction x:TypeArguments="um:IMailQuickHandle">
+              <ActivityAction.Argument>
+                <DelegateInArgument x:TypeArguments="um:IMailQuickHandle" Name="Gmail" />
+              </ActivityAction.Argument>
+              <Sequence DisplayName="Do" sap:VirtualizedContainerService.HintSize="496,499" sap2010:WorkflowViewState.IdRef="Sequence_72">
+                <Sequence.Variables>
+                  <Variable x:TypeArguments="ss:SecureString" Name="teste" />
+                  <Variable x:TypeArguments="x:String" Name="variable1" />
+                  <Variable x:TypeArguments="um:IMailQuickHandle" Name="EmailTeste" />
+                  <Variable x:TypeArguments="x:String" Name="Teste" />
+                  <Variable x:TypeArguments="x:String" Name="TesteHtml" />
+                </Sequence.Variables>
+                <sap:WorkflowViewStateService.ViewState>
+                  <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                    <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                    <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                  </scg:Dictionary>
+                </sap:WorkflowViewStateService.ViewState>
+                <umab:SendMailX Bcc="{x:Null}" Body="{x:Null}" Cc="{x:Null}" HtmlBodyFromText="{x:Null}" ReplyTo="{x:Null}" Account="[Gmail]" DisplayName="Send Email - Sucesso e Exception" sap:VirtualizedContainerService.HintSize="434,377" sap2010:WorkflowViewState.IdRef="SendMailX_27" Importance="Normal" IsDraft="False" MaxBodyDocumentSizeMB="2" Sensitivity="Normal" Subject="[in_Config(&quot;Assunto_Email&quot;).ToString]" To="[in_Config(&quot;Email_To&quot;).ToString]" UseDocumentAsBody="False">
+                  <umab:SendMailX.Files>
+                    <scg:List x:TypeArguments="InArgument(x:String)" Capacity="0" />
+                  </umab:SendMailX.Files>
+                  <umab:SendMailX.HtmlBodyFromFile>
+                    <umabh:HtmlContentArgument FilePath=".data/HtmlContent3.html">
+                      <umabh:HtmlContentArgument.RuntimeImages>
+                        <scg:Dictionary x:TypeArguments="x:String, InArgument(x:String)" />
+                      </umabh:HtmlContentArgument.RuntimeImages>
+                      <umabh:HtmlContentArgument.ValueMappings>
+                        <scg:List x:TypeArguments="umabh:HtmlValueMappingBase" Capacity="16">
+                          <umabh:HtmlTextValueMapping Name="vNomeArea" Value="[strNomeArea]" />
+                          <umabh:HtmlTextValueMapping Name="vTextoCorpoEmail1" Value="[strCorpoEmail1]" />
+                          <umabh:HtmlTextValueMapping Name="vTotalProcessados" Value="[in_CountRowsTableSendEmailTotal]" />
+                          <umabh:HtmlTextValueMapping Name="vTotalSucess" Value="[in_CountRowsTableSendEmailSucess]" />
+                          <umabh:HtmlTextValueMapping Name="vTotalBE" Value="[in_CountRowsTableSendEmailBE]" />
+                          <umabh:HtmlTextValueMapping Name="vTotalSE" Value="[in_CountRowsTableSendEmailSE]" />
+                          <umabh:HtmlTableValueMapping Name="vTableSucesso" Value="[in_dtLogSendEmailSucess]" />
+                          <umabh:HtmlTableValueMapping Name="vTableException" Value="[in_dtLogSendEmailException]" />
+                          <umabh:HtmlTextValueMapping Name="vTextoCorpoEmail2" Value="[strCorpoEmail2]" />
+                        </scg:List>
+                      </umabh:HtmlContentArgument.ValueMappings>
+                    </umabh:HtmlContentArgument>
+                  </umab:SendMailX.HtmlBodyFromFile>
+                  <sap:WorkflowViewStateService.ViewState>
+                    <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                      <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                      <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                    </scg:Dictionary>
+                  </sap:WorkflowViewStateService.ViewState>
+                </umab:SendMailX>
+              </Sequence>
+            </ActivityAction>
+          </umab:GmailApplicationCard.Body>
+          <sap:WorkflowViewStateService.ViewState>
+            <scg:Dictionary x:TypeArguments="x:String, x:Object">
+              <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+              <x:Boolean x:Key="IsPinned">False</x:Boolean>
+            </scg:Dictionary>
+          </sap:WorkflowViewStateService.ViewState>
+        </umab:GmailApplicationCard>
+      </If.Then>
+      <If.Else>
+        <If Condition="[in_CountRowsTableSendEmailSucess &lt;= 0 AND in_CountRowsTableSendEmailException &gt; 0]" DisplayName="If - Envio de email de Exception" sap:VirtualizedContainerService.HintSize="694,1806" sap2010:WorkflowViewState.IdRef="If_31">
+          <sap:WorkflowViewStateService.ViewState>
+            <scg:Dictionary x:TypeArguments="x:String, x:Object">
+              <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+              <x:Boolean x:Key="IsPinned">False</x:Boolean>
+            </scg:Dictionary>
+          </sap:WorkflowViewStateService.ViewState>
+          <If.Then>
+            <umab:GmailApplicationCard Account="romario.santos@grupoboticario.com.br" ClientId="306001045108-0vikne5v3lubko5gevi8t2qb06mbj009.apps.googleusercontent.com" ClientSecret="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" ConnectionAccountName="thiago.zanoni@grupoboticario.com.br" ConnectionId="63af24ab-968a-ed11-ac20-14cb652f1df1" DisplayName="Use Gmail" EmailAddress="romario.santos@grupoboticario.com.br" sap:VirtualizedContainerService.HintSize="530,690" sap2010:WorkflowViewState.IdRef="GmailApplicationCard_9" Timeout="90" UseConnectionService="True">
+              <umab:GmailApplicationCard.Body>
+                <ActivityAction x:TypeArguments="um:IMailQuickHandle">
+                  <ActivityAction.Argument>
+                    <DelegateInArgument x:TypeArguments="um:IMailQuickHandle" Name="Gmail" />
+                  </ActivityAction.Argument>
+                  <Sequence DisplayName="Do" sap:VirtualizedContainerService.HintSize="496,499" sap2010:WorkflowViewState.IdRef="Sequence_61">
+                    <Sequence.Variables>
+                      <Variable x:TypeArguments="ss:SecureString" Name="teste" />
+                      <Variable x:TypeArguments="x:String" Name="variable1" />
+                      <Variable x:TypeArguments="um:IMailQuickHandle" Name="EmailTeste" />
+                      <Variable x:TypeArguments="x:String" Name="Teste" />
+                      <Variable x:TypeArguments="x:String" Name="TesteHtml" />
+                    </Sequence.Variables>
+                    <sap:WorkflowViewStateService.ViewState>
+                      <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                        <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                      </scg:Dictionary>
+                    </sap:WorkflowViewStateService.ViewState>
+                    <umab:SendMailX Bcc="{x:Null}" Body="{x:Null}" Cc="{x:Null}" HtmlBodyFromText="{x:Null}" ReplyTo="{x:Null}" Account="[Gmail]" DisplayName="Send Email - Exception" sap:VirtualizedContainerService.HintSize="434,377" sap2010:WorkflowViewState.IdRef="SendMailX_25" Importance="Normal" IsDraft="False" MaxBodyDocumentSizeMB="2" Sensitivity="Normal" Subject="[in_Config(&quot;Assunto_Email&quot;).ToString]" To="[in_Config(&quot;Email_To&quot;).ToString]" UseDocumentAsBody="False">
+                      <umab:SendMailX.Files>
+                        <scg:List x:TypeArguments="InArgument(x:String)" Capacity="0" />
+                      </umab:SendMailX.Files>
+                      <umab:SendMailX.HtmlBodyFromFile>
+                        <umabh:HtmlContentArgument FilePath=".data/HtmlContent4.html">
+                          <umabh:HtmlContentArgument.RuntimeImages>
+                            <scg:Dictionary x:TypeArguments="x:String, InArgument(x:String)" />
+                          </umabh:HtmlContentArgument.RuntimeImages>
+                          <umabh:HtmlContentArgument.ValueMappings>
+                            <scg:List x:TypeArguments="umabh:HtmlValueMappingBase" Capacity="8">
+                              <umabh:HtmlTextValueMapping Name="vNomeArea" Value="[strNomeArea]" />
+                              <umabh:HtmlTextValueMapping Name="vTextoCorpoEmail1" Value="[strCorpoEmail1]" />
+                              <umabh:HtmlTextValueMapping Name="vTotalProcessados" Value="[in_CountRowsTableSendEmailTotal]" />
+                              <umabh:HtmlTextValueMapping Name="vTotalSucess" Value="[in_CountRowsTableSendEmailSucess]" />
+                              <umabh:HtmlTextValueMapping Name="vTotalBE" Value="[in_CountRowsTableSendEmailBE]" />
+                              <umabh:HtmlTextValueMapping Name="vTotalSE" Value="[in_CountRowsTableSendEmailSE]" />
+                              <umabh:HtmlTableValueMapping Name="vTableException" Value="[in_dtLogSendEmailException]" />
+                              <umabh:HtmlTextValueMapping Name="vTextoCorpoEmail2" Value="[strCorpoEmail2]" />
+                            </scg:List>
+                          </umabh:HtmlContentArgument.ValueMappings>
+                        </umabh:HtmlContentArgument>
+                      </umab:SendMailX.HtmlBodyFromFile>
+                      <sap:WorkflowViewStateService.ViewState>
+                        <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                          <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                          <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                        </scg:Dictionary>
+                      </sap:WorkflowViewStateService.ViewState>
+                    </umab:SendMailX>
+                  </Sequence>
+                </ActivityAction>
+              </umab:GmailApplicationCard.Body>
+              <sap:WorkflowViewStateService.ViewState>
+                <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                  <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                  <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                </scg:Dictionary>
+              </sap:WorkflowViewStateService.ViewState>
+            </umab:GmailApplicationCard>
+          </If.Then>
+          <If.Else>
+            <If Condition="[in_CountRowsTableSendEmailSucess &gt; 0 AND in_CountRowsTableSendEmailException &gt; 0]" DisplayName="If - Envio de email de Sucesso e Exception" sap:VirtualizedContainerService.HintSize="612,953" sap2010:WorkflowViewState.IdRef="If_32">
+              <sap:WorkflowViewStateService.ViewState>
+                <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                  <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                  <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                </scg:Dictionary>
+              </sap:WorkflowViewStateService.ViewState>
+              <If.Then>
+                <umab:GmailApplicationCard Account="romario.santos@grupoboticario.com.br" ClientId="306001045108-0vikne5v3lubko5gevi8t2qb06mbj009.apps.googleusercontent.com" ClientSecret="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" ConnectionAccountName="thiago.zanoni@grupoboticario.com.br" ConnectionId="63af24ab-968a-ed11-ac20-14cb652f1df1" DisplayName="Use Gmail" EmailAddress="romario.santos@grupoboticario.com.br" sap:VirtualizedContainerService.HintSize="530,690" sap2010:WorkflowViewState.IdRef="GmailApplicationCard_10" Timeout="90" UseConnectionService="True">
+                  <umab:GmailApplicationCard.Body>
+                    <ActivityAction x:TypeArguments="um:IMailQuickHandle">
+                      <ActivityAction.Argument>
+                        <DelegateInArgument x:TypeArguments="um:IMailQuickHandle" Name="Gmail" />
+                      </ActivityAction.Argument>
+                      <Sequence DisplayName="Do" sap:VirtualizedContainerService.HintSize="496,499" sap2010:WorkflowViewState.IdRef="Sequence_62">
+                        <Sequence.Variables>
+                          <Variable x:TypeArguments="ss:SecureString" Name="teste" />
+                          <Variable x:TypeArguments="x:String" Name="variable1" />
+                          <Variable x:TypeArguments="um:IMailQuickHandle" Name="EmailTeste" />
+                          <Variable x:TypeArguments="x:String" Name="Teste" />
+                          <Variable x:TypeArguments="x:String" Name="TesteHtml" />
+                        </Sequence.Variables>
+                        <sap:WorkflowViewStateService.ViewState>
+                          <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                            <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                            <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                          </scg:Dictionary>
+                        </sap:WorkflowViewStateService.ViewState>
+                        <umab:SendMailX Bcc="{x:Null}" Body="{x:Null}" Cc="{x:Null}" HtmlBodyFromText="{x:Null}" ReplyTo="{x:Null}" Account="[Gmail]" DisplayName="Send Email - Sucesso e Exception" sap:VirtualizedContainerService.HintSize="434,377" sap2010:WorkflowViewState.IdRef="SendMailX_26" Importance="Normal" IsDraft="False" MaxBodyDocumentSizeMB="2" Sensitivity="Normal" Subject="[in_Config(&quot;Assunto_Email&quot;).ToString]" To="[in_Config(&quot;Email_To&quot;).ToString]" UseDocumentAsBody="False">
+                          <umab:SendMailX.Files>
+                            <scg:List x:TypeArguments="InArgument(x:String)" Capacity="0" />
+                          </umab:SendMailX.Files>
+                          <umab:SendMailX.HtmlBodyFromFile>
+                            <umabh:HtmlContentArgument FilePath=".data/HtmlContent3.html">
+                              <umabh:HtmlContentArgument.RuntimeImages>
+                                <scg:Dictionary x:TypeArguments="x:String, InArgument(x:String)" />
+                              </umabh:HtmlContentArgument.RuntimeImages>
+                              <umabh:HtmlContentArgument.ValueMappings>
+                                <scg:List x:TypeArguments="umabh:HtmlValueMappingBase" Capacity="16">
+                                  <umabh:HtmlTextValueMapping Name="vNomeArea" Value="[strNomeArea]" />
+                                  <umabh:HtmlTextValueMapping Name="vTextoCorpoEmail1" Value="[strCorpoEmail1]" />
+                                  <umabh:HtmlTextValueMapping Name="vTotalProcessados" Value="[in_CountRowsTableSendEmailTotal]" />
+                                  <umabh:HtmlTextValueMapping Name="vTotalSucess" Value="[in_CountRowsTableSendEmailSucess]" />
+                                  <umabh:HtmlTextValueMapping Name="vTotalBE" Value="[in_CountRowsTableSendEmailBE]" />
+                                  <umabh:HtmlTextValueMapping Name="vTotalSE" Value="[in_CountRowsTableSendEmailSE]" />
+                                  <umabh:HtmlTableValueMapping Name="vTableSucesso" Value="[in_dtLogSendEmailSucess]" />
+                                  <umabh:HtmlTableValueMapping Name="vTableException" Value="[in_dtLogSendEmailException]" />
+                                  <umabh:HtmlTextValueMapping Name="vTextoCorpoEmail2" Value="[strCorpoEmail2]" />
+                                </scg:List>
+                              </umabh:HtmlContentArgument.ValueMappings>
+                            </umabh:HtmlContentArgument>
+                          </umab:SendMailX.HtmlBodyFromFile>
+                          <sap:WorkflowViewStateService.ViewState>
+                            <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                              <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                              <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                            </scg:Dictionary>
+                          </sap:WorkflowViewStateService.ViewState>
+                        </umab:SendMailX>
+                      </Sequence>
+                    </ActivityAction>
+                  </umab:GmailApplicationCard.Body>
+                  <sap:WorkflowViewStateService.ViewState>
+                    <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                      <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                      <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                    </scg:Dictionary>
+                  </sap:WorkflowViewStateService.ViewState>
+                </umab:GmailApplicationCard>
+              </If.Then>
+            </If>
+          </If.Else>
+        </If>
+      </If.Else>
+    </If>
+  </Sequence>
+</Activity>
